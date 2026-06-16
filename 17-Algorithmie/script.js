@@ -22,3 +22,20 @@ const ingredients = [
   { name: 'Tomates cerises', category: 'Légume', price: 2.3, available: true },
   { name: 'Avocat', category: 'Fruit', price: 3.0, available: false },
 ];
+
+const order = {
+  base: [bases[0]],
+  ingredients: [ingredients[2], ingredients[3], ingredients[4], ingredients[5]],
+};
+
+function verifyOrder(base, ingredients) {
+  if (order.base.length === 1 && order.ingredients.length === 4) {
+    console.log('Proceed to checkout');
+  } else {
+    console.log('Please select 1 base and 4 ingredients');
+  }
+}
+
+
+
+
