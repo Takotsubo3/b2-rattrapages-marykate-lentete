@@ -23,10 +23,10 @@ const ingredients = [
   { name: 'Avocat', category: 'Fruit', price: 3.0, available: false },
 ];
 
-const order = {
-  base: [bases[0]],
-  ingredients: [ingredients[2], ingredients[3], ingredients[4], ingredients[5]],
-};
+// const order = {
+//   base: [bases[0]],
+//   ingredients: [ingredients[5], ingredients[3], ingredients[4], ingredients[5]],
+// };
 
 function verifyOrder(base, ingredients) {
   if (order.base.length === 1 && order.ingredients.length === 4) {
@@ -36,6 +36,20 @@ function verifyOrder(base, ingredients) {
   }
 }
 
+function verifyIngredients(base, ingredients) {
+  for (let i = 0; i < ingredients.length; i++) {
+    for (let j = i + 1; j < ingredients.length; j++) {
+      if (ingredients[i].name === ingredients[j].name) {
+        return (
+          "Ingredient '" +
+          ingredients[i].name +
+          "' selected multiple times."
+        );
+      }
+    }
+  }
 
+  return 'Valid Order.';
+}
 
-
+// console.log(verifyIngredients(order.base, order.ingredients));
