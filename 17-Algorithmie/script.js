@@ -23,10 +23,10 @@ const ingredients = [
   { name: 'Avocat', category: 'Fruit', price: 3.0, available: false },
 ];
 
-// const order = {
-//   base: [bases[0]],
-//   ingredients: [ingredients[6], ingredients[3], ingredients[2], ingredients[5]],
-// };
+const order = {
+  base: [bases[0]],
+  ingredients: [ingredients[2], ingredients[1], ingredients[3], ingredients[5]],
+};
 
 
 function verifyIngredients(base, ingredients) {
@@ -57,4 +57,42 @@ function verifyIngredients(base, ingredients) {
   return true;
 }
 
-// console.log(verifyIngredients(order.base, order.ingredients));
+
+function calculatePrice(base, ingredients) {
+
+    if (verifyIngredients(order.base,order.ingredients) === true) {
+        console.log("=== ORDER ===");
+
+    console.log("Base:");
+
+    base.forEach((base, i) => {
+        console.log(i + 1, base.name + ": " + base.price );
+    });
+
+    console.log("Ingredients:");
+
+    ingredients.forEach((ingredient, i) => {
+        console.log(i + 1, ingredient.name + ": " + ingredient.price);
+    });
+
+    console.log("===================");
+
+    let total = 0;
+
+    base.forEach(base => {
+        total += base.price;
+    });
+
+    ingredients.forEach(ingredient => {
+        total += ingredient.price;
+    });
+
+    console.log("Total: " + total + " Euros")  ;
+    
+    }else{
+        console.log("Something went wrong");
+    }
+}
+
+calculatePrice(order.base,order.ingredients)
+
