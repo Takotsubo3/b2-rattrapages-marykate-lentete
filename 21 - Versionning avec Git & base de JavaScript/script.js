@@ -58,7 +58,6 @@ async function addIngredient() {
     console.log("Must be true or false");
   }
 
-  rl.close();
   ingredient = {name,category,price,available};
   console.log(ingredient);
   
@@ -135,7 +134,7 @@ function showAvailableIngredients(ingredients) {
   ingredients.forEach((ingredient, index) => {
     if (ingredient.available) {
      console.log(
-    "==="+ingredient.name.toUpperCase()+"===" +
+    "=== "+ingredient.name.toUpperCase()+" ===" +
     "\nID: "   + (index + 1)+
   "\nCategory: " + ingredient.category +
   "\nPrice: $" + ingredient.price +
@@ -151,7 +150,7 @@ function showTotalIngredients(ingredients) {
     console.log("Total number of ingredients: " + total);
 }
 
-function showTotalAvailable(ingredient){
+function showTotalAvailable(ingredients){
   let total = 0;
     ingredients.forEach(ingredient => {
         if (ingredient.available) {
@@ -163,7 +162,63 @@ function showTotalAvailable(ingredient){
     
 }
 
-showTotalAvailable(ingredients);
+async function main() {
+  let choice;
 
+  do {
+    console.log("\n===== MENU =====");
+    console.log("1 - Show all ingredients");
+    console.log("2 - Add an ingredient");
+    console.log("3 - Delete an ingredient");
+    console.log("4 - Change ingredient availability");
+    console.log("5 - Show available ingredients");
+    console.log("6 - Show total number of ingredients");
+    console.log("7 - Show total available ingredients");
+    console.log("0 - Exit");
+
+    choice = await ask("Enter your choice: ");
+
+    switch (choice) {
+      case "1":
+        showIngredients(ingredients);
+        break;
+
+      case "2":
+        await addIngredient();
+        break;
+
+      case "3":
+        await deleteIngredient();
+        break;
+
+      case "4":
+        await changeAvailability();
+        break;
+
+      case "5":
+        showAvailableIngredients(ingredients);
+        break;
+
+      case "6":
+        showTotalIngredients(ingredients);
+        break;
+
+      case "7":
+        showTotalAvailable(ingredients);
+        break;
+
+      case "0":
+        console.log("Goodbye!");
+        rl.close();
+        break;
+
+      default:
+        console.log("Invalid choice.");
+    }
+
+  } while (choice !== "0");
+}
+
+main();
 
 
