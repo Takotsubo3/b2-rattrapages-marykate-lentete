@@ -200,12 +200,98 @@ async function calculatePrice(base, ingredients) {
     }
 }
 
+async function suggestSalad() {
+  const input = await ask("\nEnter your budget: ");
+  const budget = parseFloat(input);
+
+  if (isNaN(budget)) {
+    console.log("Invalid budget");
+    return;
+  }
+
+  let availableBases = [];
+  for (let i = 0; i < bases.length; i++) {
+    if (bases[i].available) {
+      availableBases.push(bases[i]);
+    }
+  }
+
+  let availableIngredients = [];
+  for (let i = 0; i < ingredients.length; i++) {
+    if (ingredients[i].available) {
+      availableIngredients.push(ingredients[i]);
+    }
+  }
+
+  if (availableBases.length === 0 || availableIngredients.length < 4) {
+    console.log("Not enough items available");
+    return;
+  }
+
+  availableBases.sort(() => Math.random() - 0.5);
+  availableIngredients.sort(() => Math.random() - 0.5);
+
+  let base = null;
+  let picked = [];
+
+  for (let i = 0; i < availableBases.length; i++) {
+    let remaining = budget - availableBases[i].price;
+    let tempPicked = [];
+
+    for (let j = 0; j < availableIngredients.length; j++) {
+      if (availableIngredients[j].price <= remaining) {
+        tempPicked.push(availableIngredients[j]);
+        remaining -= availableIngredients[j].price;
+      }
+      if (tempPicked.length === 4) break;
+    }
+
+    if (tempPicked.length === 4) {
+      base = availableBases[i];
+      picked = tempPicked;
+      break;
+    }
+  }
+
+  if (!base) {
+    console.log("Budget too low to build a salad");
+    return;
+  }
+
+  let total = base.price;
+  for (let i = 0; i < picked.length; i++) {
+    total += picked[i].price;
+  }
+
+  console.log("\n=== SUGGESTED SALAD ===");
+  console.log("Base: " + base.name + " (" + base.price + "€)");
+  console.log("Ingredients:");
+  for (let i = 0; i < picked.length; i++) {
+    console.log(" -", picked[i].name + " (" + picked[i].price + "€)");
+  }
+  console.log("Total: " + total + "€");
+}
+
 
 
 async function main() {
-   await selectBase();
-  await selectIngredients();
-  calculatePrice(order.base, order.ingredients);
+
+  console.log("\n=== WELCOME ===");
+  console.log("1 - Build my own salad");
+  console.log("2 - Suggest a salad based on my budget");
+
+  let choice = await ask("Enter your choice (1-2): ");
+
+  if (choice === "1") {
+    await selectBase();
+    await selectIngredients();
+    await calculatePrice(order.base, order.ingredients);
+  } else if (choice === "2") {
+    await suggestSalad();
+  } else {
+    console.log("Invalid choice");
+  }
+
   rl.close();
 }
 
