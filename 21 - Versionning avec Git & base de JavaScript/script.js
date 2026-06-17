@@ -151,8 +151,19 @@ function showTotalIngredients(ingredients) {
     console.log("Total number of ingredients: " + total);
 }
 
+function showTotalAvailable(ingredient){
+  let total = 0;
+    ingredients.forEach(ingredient => {
+        if (ingredient.available) {
+          total ++;
+          
+        }
+    });
+    console.log("Total ingredients available: " +total);
+    
+}
 
-showTotalIngredients(ingredients);
+showTotalAvailable(ingredients);
 
 
 
