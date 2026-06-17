@@ -86,6 +86,9 @@ Une Pull Request est créée afin de demander la fusion de la branche de dévelo
 
 Après validation, la Pull Request est fusionnée dans la branche `main`.
 
+<img width="1127" height="153" alt="image" src="https://github.com/user-attachments/assets/177259d1-598b-4132-9afe-20ee0d9f8971" />
+
+
 ---
 
 ## Tests
