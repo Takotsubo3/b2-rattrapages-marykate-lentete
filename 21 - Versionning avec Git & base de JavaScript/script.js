@@ -145,10 +145,14 @@ function showAvailableIngredients(ingredients) {
     }
   });
 }
-//  addIngredient();
-//  deleteIngredient();
-//  changeAvailability();
-showAvailableIngredients(ingredients);
+
+function showTotalIngredients(ingredients) {
+  let total = ingredients.length
+    console.log("Total number of ingredients: " + total);
+}
+
+
+showTotalIngredients(ingredients);
 
 
 
