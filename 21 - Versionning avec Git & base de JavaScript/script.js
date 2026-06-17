@@ -129,9 +129,26 @@ async function changeAvailability() {
 
   showIngredients(ingredients);
 }
+
+
+function showAvailableIngredients(ingredients) {
+  ingredients.forEach((ingredient, index) => {
+    if (ingredient.available) {
+     console.log(
+    "==="+ingredient.name.toUpperCase()+"===" +
+    "\nID: "   + (index + 1)+
+  "\nCategory: " + ingredient.category +
+  "\nPrice: $" + ingredient.price +
+  "\nAvailable: " + (ingredient.available ? "Yes" : "No") +
+  "\n======"
+);
+    }
+  });
+}
 //  addIngredient();
 //  deleteIngredient();
- changeAvailability();
+//  changeAvailability();
+showAvailableIngredients(ingredients);
 
 
 
