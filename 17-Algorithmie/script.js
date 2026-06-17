@@ -28,10 +28,6 @@ const ingredients = [
   { name: 'Avocat', category: 'Fruit', price: 3.0, available: false },
 ];
 
-// const order = {
-//   base: [bases[0]],
-//   ingredients: [ingredients[2], ingredients[1], ingredients[1], ingredients[5]],
-// };
 
 let order = {
   base: [],
