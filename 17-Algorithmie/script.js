@@ -188,7 +188,7 @@ async function calculatePrice(base, ingredients) {
             total += ingredients[i].price;
         }
 
-        console.log("Total: " + total + " Euros");
+        console.log("Total: " + total.toFixed(2) + " Euros");
 
     } else {
 
