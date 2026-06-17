@@ -10,6 +10,7 @@ Node.js
 ## Lancer en ligne de commande
 
 cd 17-Algorithmie
+
 node script.js
 
 ---
@@ -125,3 +126,8 @@ Budget : 3€ → `Budget too low to build a salad`
 Entrer `99` comme numéro de base → `Invalid choice`, le programme redemande
 
 ![alt text](image-5.png)
+
+
+### Recherche
+Documentation: W3Schools
+Readme: Markdown Guide
