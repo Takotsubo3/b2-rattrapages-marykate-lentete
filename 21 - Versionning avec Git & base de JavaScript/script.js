@@ -18,9 +18,10 @@ const ingredients = [
 ];
 
 function showIngredients(ingredients) {
-  ingredients.forEach((ingredient) => {
+  ingredients.forEach((ingredient,index) => {
 console.log(
     "==="+ingredient.name.toUpperCase()+"===" +
+    "\nID: "   + (index + 1)+
   "\nCategory: " + ingredient.category +
   "\nPrice: $" + ingredient.price +
   "\nAvailable: " + (ingredient.available ? "Yes" : "No") +
@@ -71,8 +72,66 @@ async function addIngredient() {
   };
 }
 
+async function deleteIngredient() {
+  if (ingredients.length === 0) {
+    console.log("No ingredients to delete.");
+    return;
+  }
 
- addIngredient();
- 
+  showIngredients(ingredients);
+
+  let index;
+
+  while (true) {
+    const input = await ask("Enter the ID of the ingredient to delete: ");
+
+    index = Number(input) - 1;
+
+    if (!isNaN(index) && index >= 0 && index < ingredients.length) {
+      break;
+    }
+
+    console.log("Invalid index");
+  }
+
+  const removed = ingredients.splice(index, 1);
+
+  console.log("\n Deleted: " +removed[0].name);
+}
+
+async function changeAvailability() {
+  if (ingredients.length === 0) {
+    console.log("No ingredients available.");
+    return;
+  }
+
+  showIngredients(ingredients);
+
+  let index;
+
+  while (true) {
+    const input = await ask("Enter ingredient number to change availability: ");
+    index = Number(input) - 1;
+
+    if (!isNaN(index) && index >= 0 && index < ingredients.length) break;
+
+    console.log("Invalid index");
+  }
+
+  const ingredient = ingredients[index];
+
+  ingredient.available = !ingredient.available;
+
+  console.log(
+    `\n ${ingredient.name} is now ` +
+    (ingredient.available ? "Available" : "Unavailable ")
+  );
+
+  showIngredients(ingredients);
+}
+//  addIngredient();
+//  deleteIngredient();
+ changeAvailability();
+
 
 
