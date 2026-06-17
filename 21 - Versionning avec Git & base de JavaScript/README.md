@@ -77,6 +77,8 @@ git push origin 21-Git-Javascript
 
 Une Pull Request est créée afin de demander la fusion de la branche de développement vers `main`.
 
+![alt text](image-6.png)
+
 
 ---
 
