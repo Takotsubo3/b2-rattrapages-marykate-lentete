@@ -22,11 +22,57 @@ function showIngredients(ingredients) {
 console.log(
     "==="+ingredient.name.toUpperCase()+"===" +
   "\nCategory: " + ingredient.category +
-  "\nPrice: $" + ingredient.price.toFixed(2) +
+  "\nPrice: $" + ingredient.price +
   "\nAvailable: " + (ingredient.available ? "Yes" : "No") +
   "\n======"
 );
   });
 }
 
-showIngredients(ingredients);
+async function addIngredient() {
+
+  let name = "";
+  while (!name.trim()) {
+    name = await ask("Ingredient name: ");
+    if (!name.trim()) console.log("Name cannot be empty");
+  }
+
+  let category = "";
+  while (!category.trim()) {
+    category = await ask("Category: ");
+    if (!category.trim()) console.log("Category cannot be empty");
+  }
+
+  let price;
+  while (true) {
+    price = await ask("Price: ");
+    if (!isNaN(price) && Number(price) > 0) break;
+    console.log("Price must be a number > 0");
+  }
+
+  let available;
+  while (true) {
+    available = await ask("Available (true/false): ");
+    if (available === "true" || available === "false") break;
+    console.log("Must be true or false");
+  }
+
+  rl.close();
+  ingredient = {name,category,price,available};
+  console.log(ingredient);
+  
+    ingredients.push(ingredient); 
+
+  return {
+    name,
+    category,
+    price: Number(price),
+    available: available === "true"
+  };
+}
+
+
+ addIngredient();
+ 
+
+
