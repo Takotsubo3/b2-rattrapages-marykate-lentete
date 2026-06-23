@@ -150,3 +150,6 @@ Affichage du nombre total d'ingrédients et du nombre d'ingrédients disponibles
 
 * Documentation : W3Schools/Stackoverflow
 * README : Markdown Guide
+
+## Lien loom
+https://www.loom.com/share/b507b303aebd4ea3b818e18656a1f045
