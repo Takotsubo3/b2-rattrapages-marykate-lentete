@@ -8,3 +8,5 @@
 
 
 Lien loom: https://www.loom.com/share/b84b06ca43bf4a26b3e3f9ec8015df1c
+
+Les captures d'écran se trouvent à la fin du PDF.
